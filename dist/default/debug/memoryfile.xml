@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/debug\alarmFuncionality.X.debug.hex">
+    <memory name="program">
+      <units>words</units>
+      <length>16384</length>
+      <used>2948</used>
+      <free>13436</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>2016</length>
+      <used>1249</used>
+      <free>767</free>
+    </memory>
+  </executable>
+</project>

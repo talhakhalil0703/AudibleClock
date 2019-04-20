@@ -1,0 +1,259 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F1778 ]
+[d frameptr 6 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_Main.c
+[v _main main `(v  1 e 1 0 ]
+"70
+[v _Lab3_DAQ Lab3_DAQ `(v  1 e 1 0 ]
+"11 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SD.c
+[v _SD_Init SD_Init `(v  1 e 1 0 ]
+"78
+[v _SD_SendCommand SD_SendCommand `(v  1 e 1 0 ]
+"114
+[v _SD_Read8bitResponse SD_Read8bitResponse `(v  1 e 1 0 ]
+"135
+[v _SD_Check8bitResponse SD_Check8bitResponse `(a  1 e 1 0 ]
+"145
+[v _SD_Read40bitResponse SD_Read40bitResponse `(v  1 e 1 0 ]
+"171
+[v _SD_Check40bitResponse SD_Check40bitResponse `(a  1 e 1 0 ]
+"7 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SPI.c
+[v _SPI_Init SPI_Init `(v  1 e 1 0 ]
+"39
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+"48
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+"6 C:\Users\tkhal\Desktop\ENCM369_Lab3.X/Lab3_CRC.h
+[v _CRCTable CRCTable `DC[256]uc  1 e 256 0 ]
+"11 C:\Users\tkhal\Desktop\ENCM369_Lab3.X/Lab3_SD.h
+[v _GLBL_Resp8 GLBL_Resp8 `uc  1 e 1 0 ]
+"12
+[v _GLBL_Resp40 GLBL_Resp40 `[5]uc  1 e 5 0 ]
+"13
+[v _GLBL_WriteBuffer GLBL_WriteBuffer `[512]uc  1 e 512 @9712 ]
+"14
+[v _GLBL_ReadBuffer GLBL_ReadBuffer `[512]uc  1 e 512 @8688 ]
+[s S22 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"570 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f1778.h
+[u S31 . 1 `S22 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES31  1 e 1 @14 ]
+[s S245 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSP1IF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 TMR1GIF 1 0 :1:7 
+]
+"657
+[s S254 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CCPIF 1 0 :1:2 
+]
+[u S257 . 1 `S245 1 . 1 0 `S254 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES257  1 e 1 @17 ]
+"2410
+[v _OSCCON OSCCON `VEuc  1 e 1 @155 ]
+[s S210 . 1 `uc 1 HFIOFS 1 0 :1:0 
+`uc 1 LFIOFR 1 0 :1:1 
+`uc 1 MFIOFR 1 0 :1:2 
+`uc 1 HFIOFL 1 0 :1:3 
+`uc 1 HFIOFR 1 0 :1:4 
+`uc 1 OSTS 1 0 :1:5 
+`uc 1 PLLR 1 0 :1:6 
+`uc 1 SOSCR 1 0 :1:7 
+]
+"2499
+[u S219 . 1 `S210 1 . 1 0 ]
+[v _OSCSTATbits OSCSTATbits `VES219  1 e 1 @156 ]
+"5116
+[v _SSP1BUF SSP1BUF `VEuc  1 e 1 @529 ]
+"5370
+[v _SSP1ADD SSP1ADD `VEuc  1 e 1 @530 ]
+"5878
+[v _SSP1STAT SSP1STAT `VEuc  1 e 1 @532 ]
+[s S176 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+"5900
+[u S185 . 1 `S176 1 . 1 0 ]
+[v _SSP1STATbits SSP1STATbits `VES185  1 e 1 @532 ]
+"6000
+[v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @533 ]
+[s S43 . 1 `uc 1 SSPM 1 0 :4:0 
+`uc 1 CKP 1 0 :1:4 
+`uc 1 SSPEN 1 0 :1:5 
+`uc 1 SSPOV 1 0 :1:6 
+`uc 1 WCOL 1 0 :1:7 
+]
+"6033
+[s S49 . 1 `uc 1 SSPM0 1 0 :1:0 
+`uc 1 SSPM1 1 0 :1:1 
+`uc 1 SSPM2 1 0 :1:2 
+`uc 1 SSPM3 1 0 :1:3 
+]
+[u S54 . 1 `S43 1 . 1 0 `S49 1 . 1 0 ]
+[v _SSP1CON1bits SSP1CON1bits `VES54  1 e 1 @533 ]
+"11506
+[v _T2PR T2PR `VEuc  1 e 1 @1172 ]
+"11560
+[v _T2CON T2CON `VEuc  1 e 1 @1173 ]
+"11834
+[v _T2CLKCON T2CLKCON `VEuc  1 e 1 @1175 ]
+"13121
+[v _DAC1CON0 DAC1CON0 `VEuc  1 e 1 @1422 ]
+"13346
+[v _DAC1REFL DAC1REFL `VEuc  1 e 1 @1423 ]
+"13768
+[v _DAC1REFH DAC1REFH `VEuc  1 e 1 @1424 ]
+"32668
+[v _SSPCLKPPS SSPCLKPPS `VEuc  1 e 1 @3642 ]
+"32688
+[v _SSPDATPPS SSPDATPPS `VEuc  1 e 1 @3643 ]
+"33128
+[v _RC2PPS RC2PPS `VEuc  1 e 1 @3746 ]
+"33168
+[v _RC4PPS RC4PPS `VEuc  1 e 1 @3748 ]
+"37866
+"37866
+[v _ANSC3 ANSC3 `VEb  1 e 0 @3187 ]
+"38496
+[v _DAC1LD DAC1LD `VEb  1 e 0 @11368 ]
+"44232
+[v _TRISC2 TRISC2 `VEb  1 e 0 @1138 ]
+"44235
+[v _TRISC3 TRISC3 `VEb  1 e 0 @1139 ]
+"44238
+[v _TRISC4 TRISC4 `VEb  1 e 0 @1140 ]
+"44247
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1143 ]
+"6 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_Main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"31
+[v main@readMessage readMessage `uc  1 a 1 2 ]
+"11
+[v main@sh_counter sh_counter `s  1 a 2 3 ]
+"15
+[v main@ch_adbyte3 ch_adbyte3 `uc  1 a 1 7 ]
+"14
+[v main@ch_adbyte2 ch_adbyte2 `uc  1 a 1 6 ]
+"13
+[v main@ch_adbyte1 ch_adbyte1 `uc  1 a 1 5 ]
+"16
+[v main@ch_adbyte4 ch_adbyte4 `uc  1 a 1 1 ]
+"12
+[v main@ch_sendbyte ch_sendbyte `uc  1 a 1 0 ]
+"68
+} 0
+"7 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SPI.c
+[v _SPI_Init SPI_Init `(v  1 e 1 0 ]
+{
+"34
+} 0
+"11 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SD.c
+[v _SD_Init SD_Init `(v  1 e 1 0 ]
+{
+"70
+} 0
+"78
+[v _SD_SendCommand SD_SendCommand `(v  1 e 1 0 ]
+{
+[v SD_SendCommand@CMD_6bit CMD_6bit `uc  1 a 1 wreg ]
+"81
+[v SD_SendCommand@Checksum Checksum `uc  1 a 1 8 ]
+"80
+[v SD_SendCommand@ByteToSend ByteToSend `uc  1 a 1 7 ]
+"78
+[v SD_SendCommand@CMD_6bit CMD_6bit `uc  1 a 1 wreg ]
+[v SD_SendCommand@ARG3 ARG3 `uc  1 p 1 1 ]
+[v SD_SendCommand@ARG2 ARG2 `uc  1 p 1 2 ]
+[v SD_SendCommand@ARG1 ARG1 `uc  1 p 1 3 ]
+[v SD_SendCommand@ARG0 ARG0 `uc  1 p 1 4 ]
+[v SD_SendCommand@CMD_6bit CMD_6bit `uc  1 a 1 6 ]
+"108
+} 0
+"39 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SPI.c
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+{
+[v SPI_Write@Data_8bit Data_8bit `uc  1 a 1 wreg ]
+[v SPI_Write@Data_8bit Data_8bit `uc  1 a 1 wreg ]
+"41
+[v SPI_Write@Data_8bit Data_8bit `uc  1 a 1 0 ]
+"43
+} 0
+"114 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SD.c
+[v _SD_Read8bitResponse SD_Read8bitResponse `(v  1 e 1 0 ]
+{
+"116
+[v SD_Read8bitResponse@readMessage readMessage `uc  1 a 1 1 ]
+"130
+} 0
+"145
+[v _SD_Read40bitResponse SD_Read40bitResponse `(v  1 e 1 0 ]
+{
+"147
+[v SD_Read40bitResponse@readMessage readMessage `uc  1 a 1 1 ]
+"165
+} 0
+"48 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SPI.c
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+{
+"53
+} 0
+"135 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_SD.c
+[v _SD_Check8bitResponse SD_Check8bitResponse `(a  1 e 1 0 ]
+{
+[v SD_Check8bitResponse@Byte Byte `uc  1 a 1 wreg ]
+"137
+[v SD_Check8bitResponse@match match `a  1 a 1 1 ]
+"135
+[v SD_Check8bitResponse@Byte Byte `uc  1 a 1 wreg ]
+"137
+[v SD_Check8bitResponse@Byte Byte `uc  1 a 1 0 ]
+"140
+} 0
+"171
+[v _SD_Check40bitResponse SD_Check40bitResponse `(a  1 e 1 0 ]
+{
+[v SD_Check40bitResponse@Byte4 Byte4 `uc  1 a 1 wreg ]
+"173
+[v SD_Check40bitResponse@match match `a  1 a 1 5 ]
+"171
+[v SD_Check40bitResponse@Byte4 Byte4 `uc  1 a 1 wreg ]
+[v SD_Check40bitResponse@Byte3 Byte3 `uc  1 p 1 0 ]
+[v SD_Check40bitResponse@Byte2 Byte2 `uc  1 p 1 1 ]
+[v SD_Check40bitResponse@Byte1 Byte1 `uc  1 p 1 2 ]
+[v SD_Check40bitResponse@Byte0 Byte0 `uc  1 p 1 3 ]
+"173
+[v SD_Check40bitResponse@Byte4 Byte4 `uc  1 a 1 4 ]
+"180
+} 0
+"70 C:\Users\tkhal\Desktop\ENCM369_Lab3.X\Lab3_Main.c
+[v _Lab3_DAQ Lab3_DAQ `(v  1 e 1 0 ]
+{
+[v Lab3_DAQ@writevalue writevalue `uc  1 a 1 wreg ]
+[v Lab3_DAQ@writevalue writevalue `uc  1 a 1 wreg ]
+[v Lab3_DAQ@writevalue writevalue `uc  1 a 1 0 ]
+"74
+} 0
