@@ -14,7 +14,7 @@
 
  */
 
-//global variables that are used to read SD card files in increments
+//Global Variables: used to hold placements in Addresses, Addresses, time, alarm time, DAQ writing, and button presses
 short G_8counter = 0;
 unsigned char * G_u8charPointer;
 unsigned short G_u16Address;
@@ -36,6 +36,7 @@ bool pressedMin = false;
 bool pressedToggle = false;
 bool pressedSnooze = false;
 bool snooze = false;
+//Audio file Address values, comment at the very top for what each element refers to on the filesystem.
 unsigned short G_au16startAddresses[] = {0x0000, 0x0017, 0x0036, 0x005a, 0x007c, 0x03B0, 0x00ae, 0x00c2, 0x00d8, //Address values of audio files
                                          0x00fc, 0x010c, 0x0122, 0x014f, 0x0168, 0x018c, 0x01ac, 0x01c1, 0x01dc,
                                          0x01f7, 0x0215, 0x0234, 0x0250, 0x026f, 0x0289, 0x029c, 0x02c1, 0x02d6,
@@ -47,18 +48,18 @@ unsigned short G_au16endAddresses[] = {0x0017, 0x0036, 0x005a, 0x007c, 0x00a0, 0
                                         0x0319, 0x033a, 0x034e, 0x0360, 0x0384, 0x039c, 0x03B0, 0x03E9, 0x0402,
                                         0x0415, 0x1B6C, 0x223E};
 
-//function prototypes
-void writeDAQ (char writevalue); //Writes to DAQ
-void playAudio (short s, short e); // e for end, s for start this the address arguments which will have to be given manually
-void active(void); //reading the bytes
-void readTime(short h, short m);
-void playAlarm(void); //Plays the alarm
-void playHour (short h);
-void playMinute10 (short m);
-void playMinute (short m);
-void configButtons(void); // configures all the buttons for their use
-void checkButtonPress(void); // Checks for button Press
-__interrupt() void timeInterrupt(void); // Increments time, and rolls the time numbers
+//Function Prototypes
+void writeDAQ (char writevalue); //Writes to the DAQ
+void playAudio (short s, short e); //Sends starting and end addres to active
+void active(void); //Plays Bytes by locking procssor out by playing the 16kHz sound in a loop.
+void readTime(short h, short m);// Determines which audio files need to be played depending on the hours and minutes provided.
+void playAlarm(void); //Checks if the alarm time is the current time, if true plays alarm
+void playHour (short h); // Plays the hour part in time
+void playMinute10 (short m);//Plays the 10's minutes part and calls the single minutes
+void playMinute (short m);//Plays the single minutes
+void configButtons(void); //Configures the pins for button presses
+void checkButtonPress(void); //Checks and exexcutes button code if pressed.
+__interrupt() void timeInterrupt(void); // Intterrupts system and then increments time, and rolls the time numbers
 
 void main(void) {
 
@@ -71,20 +72,20 @@ void main(void) {
     configButtons();
 
     DAC1CON0 = 0xA0;
-    T2CLKCON = 0x05; //setting timer 2 clock to 16khz
+    T2CLKCON = 0x05; //Setting timer 2 clock to 16khz, to be used for audio files
     T2PR = 0x1f;
     T2CON = 0x80;
 
     INTCON = 0xC0;// Enables PEIE and GIE
     PIE1 = 0x01; // Enables timer 1 overflow
-    T1CON = 0xC3; //0xF1;// uses LFintosc, prescales by 1, and turns timer 1 on.
+    T1CON = 0xC3; //0xF1;// uses LFintosc, prescales by 1, and turns timer 1 on. Time 1 is the interrupts clock it is set to 31khz
     TMR1IF = false;
 
     while(1)
     {
-    checkButtonPress();// Button Functionality
+    checkButtonPress();//checks for button presses
     playAlarm(); //checks for the alarm condition and then plays the alarm if true
-    readTime(G_u16hour, G_u16min); //Only reads based on button press
+    readTime(G_u16hour, G_u16min); //Only reads based on button press, if readTime is true
     }
     return;
 }
@@ -101,14 +102,14 @@ void configButtons()
     ANSELBbits.ANSB1 = 0;
     TRISBbits.TRISB0 = 1; //Configuring RB0 as Snooze Alarm
     ANSELBbits.ANSB0 = 0;
-    TRISBbits.TRISB5 = 0; //Configuring RB0 as Snooze Alarm
+    TRISBbits.TRISB5 = 0; //Configuring RB5 as Snooze Alarm
     ANSELBbits.ANSB5 = 0;
     return;
 }
 
 void checkButtonPress()
 {
-    //Talk Time
+       //Talk Time
         if (PORTBbits.RB4 == 1 && !pressedTalk)
         {
             pressedTalk = true;
@@ -201,11 +202,11 @@ void checkButtonPress()
             }
         }
 
-         //Snooze << should be checked in active, being checked there....
+         //Snooze << should be checked in active as that is when snooze would be called, when an audio file is being played, as in when the system is locked into playing an audio file, being checked there....
 
 }
 
-void readTime (short hour, short minute) // plays time
+void readTime (short hour, short minute) //Determines what audio files to play based on the time
 {
     if (timeSaid == true)
     {
@@ -276,7 +277,7 @@ void playMinute10 (short minute) //play minute10's spot chunk
     } else if (minute/10 == 5){
            playAudio(G_au16startAddresses[5], G_au16endAddresses[5]); // Saying 50
     }
-     playMinute(minute);
+     playMinute(minute);//playing single miuntes from this funciton
     return;
 }
 
@@ -346,7 +347,7 @@ void playMinute (short minute) //play minute chunk
     return;
 }
 
-void playAudio(short startAddress, short endAddress) //This function sets the Address as in calls Active
+void playAudio(short startAddress, short endAddress) //This function sets the Address and calls Active
 {
     if (G_8hasAddress == 0 && timeSaid)
     {
@@ -359,7 +360,7 @@ void playAudio(short startAddress, short endAddress) //This function sets the Ad
      return;
 }
 
-void active() //This function does the writing to the DAQ
+void active() //This function actually plays the sound
 {
     while (G_u16Address != G_u16EndAddress) {
         if (G_8counter == 0) { // checking if you need a new chunk of 512 bytes to read
@@ -396,7 +397,6 @@ void active() //This function does the writing to the DAQ
                 snooze = true;
                 return;
         }
-
     }
     G_8hasAddress = 0;
     return;
@@ -413,7 +413,7 @@ __interrupt() void timeInterrupt()
 
     G_u16sec += 2;
     G_u16secCheck += 2;
-    if (G_u16secCheck == 100)
+    if (G_u16secCheck == 100) //fixing the uncalibrated clock
     {
         G_u16sec -= 1;
         G_u16secCheck = 0;
